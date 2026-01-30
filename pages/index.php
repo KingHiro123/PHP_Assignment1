@@ -1,23 +1,3 @@
-<!-- index.php -->
-<?php
-session_start();
-
-// Handle nickname submission
-$nickname = '';
-
-if (isset($_POST['nickname'])) {
-    // Remove leading/trailing spaces
-    $input = trim($_POST['nickname']);
-
-    // Check if it contains only letters and numbers (a-z, A-Z)
-    if (preg_match('/^[a-zA-Z]+$/', $input)) {
-        $nickname = htmlspecialchars($input);
-    } else {
-        echo "<p style='color:red;'>Nickname can only contain letters!</p>";
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,19 +12,20 @@ if (isset($_POST['nickname'])) {
         }
 
         .nickname-container {
-            margin-bottom: 20px;
+            margin-top: 35px;
+            margin-bottom: 30px;
         }
 
         .header-banner {
             width: 100%;
             background-color: #2c3e50;
-            /* solid colour */
             color: white;
-            padding: 15px 0;
-            text-align: center;
-            font-size: 24px;
+            padding: 10px 20px;
+            text-align: left;
+            font-size: 26px;
             font-weight: bold;
-            margin-bottom: 30px;
+            margin: -20px -20px 20px -20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
 
         .featured-quizzes {
@@ -54,36 +35,68 @@ if (isset($_POST['nickname'])) {
         }
 
         .quiz-card {
-            width: 700px;
-            height: 450px;
+            width: 650px;
+            height: 400px;
+
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
+
+            border-radius: 20px;
             color: white;
-            padding: 10px;
+            padding: 25px;
+
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .quiz-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+        }
+
+
+        .quiz-card h3 {
+            margin: 0 0 10px 0;
         }
 
         .quiz-card img {
-            width: 150px;
-            height: 100px;
+            width: 250px;
+            height: 200px;
             background-color: lightgray;
-            margin-bottom: 10px;
+            margin-bottom: 50px;
+            align-self: center;
+        }
+
+        .quiz-desc {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 10px;
         }
 
         .play-btn {
-            margin-top: 60px;
-            padding: 10px 20px;
+            margin-top: auto;
+            padding: 12px 28px;
             border: none;
-            border-radius: 20px;
+            border-radius: 30px;
             cursor: pointer;
             text-decoration: none;
             background: white;
             color: black;
-            display: inline-block;
-            text-align: center;
+            font-weight: bold;
+            align-self: center;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
+
+        .play-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+        }
+
+        .play-btn:active {
+            transform: scale(0.96);
+        }
+
 
         .red {
             background-color: #ff6b6b;
@@ -97,8 +110,27 @@ if (isset($_POST['nickname'])) {
 
 <body>
     <div class="header-banner">
-        The World Around Us
+        ⌯✈︎ The World Around Us
     </div>
+
+    <?php
+    session_start();
+
+    // Handle nickname submission
+    $nickname = '';
+
+    if (isset($_POST['nickname'])) {
+        // Remove leading/trailing spaces
+        $input = trim($_POST['nickname']);
+
+        // Check if it contains only letters and numbers (a-z, A-Z)
+        if (preg_match('/^[a-zA-Z]+$/', $input)) {
+            $nickname = htmlspecialchars($input);
+        } else {
+            echo "<p style='color:red;'>Nickname can only contain letters!</p>";
+        }
+    }
+    ?>
 
     <form method="post" class="nickname-container">
         <label for="nickname">Nickname:</label>
@@ -110,14 +142,20 @@ if (isset($_POST['nickname'])) {
     <h2>Featured Quizzes</h2>
     <div class="featured-quizzes">
         <div class="quiz-card red">
-            <h3>Animals</h3>
+            <h3>𐂂 Animals ଳ ‧₊˚</h3>
             <img src="" alt="Animals Quiz Image">
+            <p class="quiz-desc">
+                Test your knowledge about wildlife, habitats, and amazing animal facts.
+            </p>
             <a href="animal_quiz.php" class="play-btn">Play</a>
         </div>
 
         <div class="quiz-card green">
-            <h3>Environment</h3>
+            <h3>ᨒ Environment ☘︎ ݁˖</h3>
             <img src="" alt="Environment Quiz Image">
+            <p class="quiz-desc">
+                Learn about nature, conservation, and how we protect our planet.
+            </p>
             <a href="environment_quiz.php" class="play-btn">Play</a>
         </div>
 
