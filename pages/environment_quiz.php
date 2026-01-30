@@ -8,19 +8,18 @@
         .header-banner {
             width: 100%;
             background-color: #2c3e50;
-            /* solid colour */
             color: white;
-            padding: 15px 0;
-            text-align: center;
-            font-size: 24px;
+            padding: 10px 5px;
+            font-size: 26px;
             font-weight: bold;
-            margin-bottom: 30px;
+            margin: 0 0 25px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
         </style>
 </head>
 <body>
     <div class="header-banner">
-        The World Around Us
+        ⌯✈︎ The World Around Us
     </div>
     echo "environment qui
 </body>
