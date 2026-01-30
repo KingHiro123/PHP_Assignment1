@@ -1,3 +1,7 @@
+<?php
+session_start();  
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,67 +11,81 @@
     <title>Quiz Page</title>
 
     <style>
+        {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
             margin: 0;
+            font-family: Arial, sans-serif;
             background: #f5f6fa;
+            overflow-x: hidden; 
         }
 
         .header-banner {
             width: 100%;
             background-color: #2c3e50;
             color: white;
-            padding: 10px 5px;
+            padding: 14px 30px;
             font-size: 26px;
             font-weight: bold;
-            margin: 0 0 25px 0;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
 
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
         .nickname-container {
-            margin: 25px 0 35px 0;
             display: flex;
             align-items: center;
             gap: 10px;
+            margin-bottom: 35px;
         }
 
         .nickname-container input {
-            padding: 6px 10px;
+            padding: 8px 12px;
             border-radius: 8px;
             border: 1px solid #ccc;
         }
 
         .nickname-container button {
-            padding: 6px 14px;
+            padding: 8px 16px;
             border-radius: 8px;
             border: none;
             background: #2c3e50;
             color: white;
             cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .nickname-container button:hover {
+            opacity: 0.9;
         }
 
         h2 {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .featured-quizzes {
             display: flex;
-            gap: 50px;
             justify-content: center;
+            gap: 50px;
             flex-wrap: wrap;
         }
 
         .quiz-card {
-            width: 650px;
-            height: 400px;
+            width: 610px;
+            height: 360px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            padding: 25px;
             border-radius: 20px;
             color: white;
-            padding: 25px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
@@ -79,13 +97,14 @@
 
         .quiz-card h3 {
             margin: 0;
+            font-size: 22px;
         }
 
         .card-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             text-align: center;
         }
 
@@ -93,7 +112,7 @@
             width: 250px;
             height: 200px;
             background-color: lightgray;
-            border-radius: 10px;
+            border-radius: 12px;
         }
 
         .quiz-desc {
@@ -108,8 +127,8 @@
             font-weight: bold;
             background: white;
             color: black;
-            transition: all 0.2s ease;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: all 0.2s ease;
         }
 
         .play-btn:hover {
@@ -137,60 +156,64 @@
         ⌯✈︎ The World Around Us
     </div>
 
-    <?php
-    session_start();
+    <div class="container">
 
-    if (isset($_POST['nickname'])) {
-        $input = trim($_POST['nickname']);
-
-        if (preg_match('/^[a-zA-Z]+$/', $input)) {
-            $_SESSION['nickname'] = htmlspecialchars($input);
-        } else {
-            echo "<p style='color:red;'>Nickname can only contain letters!</p>";
+        <?php
+        if (isset($_POST['nickname'])) {
+            $input = trim($_POST['nickname']);
+            if (preg_match('/^[a-zA-Z]+$/', $input)) {
+                $_SESSION['nickname'] = htmlspecialchars($input);
+            } else {
+                echo "<p style='color:red;'>Nickname can only contain letters!</p>";
+            }
         }
-    }
 
-    $nickname = $_SESSION['nickname'] ?? '';
-    ?>
+        $nickname = $_SESSION['nickname'] ?? '';
+        ?>
 
-    <form method="post" class="nickname-container">
-        <label>Nickname:</label>
-        <input type="text"
-               name="nickname"
-               placeholder="Enter nickname..."
-               value="<?php echo $nickname; ?>"
-               oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')">
+        <form method="post" class="nickname-container">
+            <label>Nickname:</label>
+            <input type="text"
+                   name="nickname"
+                   placeholder="Enter nickname..."
+                   value="<?php echo $nickname; ?>"
+                   oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')">
+            <button type="submit">Save</button>
+        </form>
 
-        <button type="submit">Save</button>
-    </form>
+        <h2>Featured Quizzes</h2>
 
-    <h2>Featured Quizzes</h2>
+        <div class="featured-quizzes">
 
-    <div class="featured-quizzes">
-
-        <div class="quiz-card red">
-            <h3>𐂂 Animals</h3>
-            <div class="card-content">
-                <img src="" alt="">
-                <p class="quiz-desc">
-                    Test your knowledge about wildlife, habitats, and amazing animal facts.
-                </p>
+            <div class="quiz-card red">
+                <h3>𐂂 Animals</h3>
+                <div class="card-content">
+                    <img src="" alt="">
+                    <p class="quiz-desc">
+                        Test your knowledge about wildlife, habitats, and amazing animal facts.
+                    </p>
+                </div>
+                <a href="animal_quiz.php" class="play-btn">Play</a>
             </div>
-            <a href="animal_quiz.php" class="play-btn">Play</a>
-        </div>
 
-        <div class="quiz-card green">
-            <h3>ᨒ Environment ☘︎ ݁˖</h3>
-            <div class="card-content">
-                <img src="" alt="">
-                <p class="quiz-desc">
-                    Learn about nature, conservation, and how we protect our planet.
-                </p>
+
+            <div class="quiz-card green">
+                <h3>ᨒ Environment ☘︎ ݁˖</h3>
+                <div class="card-content">
+                    <img src="" alt="">
+                    <p class="quiz-desc">
+                        Learn about nature, conservation, and how we protect our planet.
+                    </p>
+                </div>
+                <a href="environment_quiz.php" class="play-btn">Play</a>
             </div>
-            <a href="environment_quiz.php" class="play-btn">Play</a>
+
         </div>
 
     </div>
 
 </body>
 </html>
+
+
+
