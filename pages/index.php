@@ -29,13 +29,10 @@ session_start();
             padding: 14px 30px;
             font-size: 26px;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
 
         .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 30px 20px;
+            padding: 30px 70px;
         }
 
         .nickname-container {
@@ -54,7 +51,6 @@ session_start();
         .nickname-container button {
             padding: 8px 16px;
             border-radius: 8px;
-            border: none;
             background: #2c3e50;
             color: white;
             cursor: pointer;
@@ -67,13 +63,13 @@ session_start();
 
         h2 {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
         }
 
         .featured-quizzes {
             display: flex;
             justify-content: center;
-            gap: 50px;
+            gap: 55px;
             flex-wrap: wrap;
         }
 
@@ -83,7 +79,7 @@ session_start();
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 25px;
+            padding: 20px;
             border-radius: 20px;
             color: white;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -97,14 +93,14 @@ session_start();
 
         .quiz-card h3 {
             margin: 0;
-            font-size: 22px;
+            font-size: 18px;
         }
 
         .card-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
             text-align: center;
         }
 
@@ -116,7 +112,7 @@ session_start();
         }
 
         .quiz-desc {
-            font-size: 15px;
+            font-size: 16px;
         }
 
         .play-btn {
@@ -187,31 +183,33 @@ session_start();
 
             <div class="quiz-card red">
                 <h3>𐂂 Animals</h3>
+
                 <div class="card-content">
                     <img src="" alt="">
                     <p class="quiz-desc">
-                        Test your knowledge about wildlife, habitats, and amazing animal facts.
+                        A short quiz to test your knowledge regarding wildlife.
                     </p>
                 </div>
+
                 <a href="animal_quiz.php" class="play-btn">Play</a>
             </div>
 
 
             <div class="quiz-card green">
                 <h3>ᨒ Environment ☘︎ ݁˖</h3>
+
                 <div class="card-content">
                     <img src="" alt="">
                     <p class="quiz-desc">
                         Learn about nature, conservation, and how we protect our planet.
                     </p>
                 </div>
+
                 <a href="environment_quiz.php" class="play-btn">Play</a>
             </div>
 
         </div>
-
     </div>
-
 </body>
 </html>
 
