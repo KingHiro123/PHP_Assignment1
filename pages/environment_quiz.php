@@ -50,7 +50,7 @@ session_start();
     </div>
 
     <div class="container">
-        <h2>Animal Quiz</h2>
+        <h2>Environment Quiz</h2>
         <div class="quiz-box">
             <p>Your quiz questions will go here.</p>
         </div>
