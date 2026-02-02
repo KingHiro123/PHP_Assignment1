@@ -20,14 +20,13 @@ session_start();
             width: 100%;
             background-color: #2c3e50;
             color: white;
-
-            padding: 12px 25px;
+            padding: 14px 30px;
             font-size: 26px;
             font-weight: bold;
-
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
+    </style>
 </head>
+
 <body>
     <div class="header-banner">
         ⌯✈︎ The World Around Us
