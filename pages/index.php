@@ -160,7 +160,7 @@ session_start();
             if (preg_match('/^[a-zA-Z]+$/', $input)) {
                 $_SESSION['nickname'] = htmlspecialchars($input);
             } else {
-                echo "<p style='color:red;'>Nickname can only contain letters!</p>";
+                echo "<p style='color:red;'>Enter nickname before picking quiz and nickname can only contain letters!</p>";
             }
         }
 
