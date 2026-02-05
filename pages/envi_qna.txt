@@ -1,0 +1,39 @@
+Image: 
+Description: Bamboo can grow up to 91 cm (35 inches) in a single day.
+Question: True or False?
+Answer: True
+
+Image: 
+Description: Venus flytraps are carnivorous plants that can snap shut in less than a second to catch 
+Question: True or False?
+Answer: True
+
+Image: 
+Description: All deserts are hot; cold deserts like Antarctica are not considered true deserts.
+Question: True or False?
+Answer: False
+
+Image: 
+Description: Coral reefs are made up of rocks that have been shaped by ocean waves.
+Question: True or False?
+Answer: False
+
+Image: 
+Description: Trees release oxygen during photosynthesis and take in carbon dioxide.
+Question: True or False?
+Answer: True
+
+Image: The Amazon Rainforest is often called the “lungs of the Earth” because it produces more oxygen than it consumes.
+Description: 
+Question: True or False?
+Answer: True 
+
+Image: 
+Description: A tsunami is caused by a large storm at sea.
+Question: True or False?
+Answer: False
+
+Image: 
+Description: Wetlands are important for filtering water and providing habitats for many species.
+Question: True or False?
+Answer: True

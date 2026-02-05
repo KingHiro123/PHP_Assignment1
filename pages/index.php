@@ -1,5 +1,18 @@
 <?php
-session_start();  
+session_start();
+
+// nickname
+if (isset($_POST['nickname'])) {
+    $input = trim($_POST['nickname']);
+
+    if (preg_match('/^[a-zA-Z]+$/', $input)) {
+        $_SESSION['nickname'] = htmlspecialchars($input);
+    } else {
+        $error = "Nickname must contain letters only!";
+    }
+}
+
+$nickname = $_SESSION['nickname'] ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +32,7 @@ session_start();
             margin: 0;
             font-family: Arial, sans-serif;
             background: #f5f6fa;
-            overflow-x: hidden; 
+            overflow-x: hidden;
         }
 
         .header-banner {
@@ -55,6 +68,7 @@ session_start();
             color: white;
             cursor: pointer;
             transition: 0.2s;
+            border: none;
         }
 
         .nickname-container button:hover {
@@ -125,6 +139,7 @@ session_start();
             color: black;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             transition: all 0.2s ease;
+            display: inline-block;
         }
 
         .play-btn:hover {
@@ -143,6 +158,11 @@ session_start();
         .green {
             background-color: #4caf50;
         }
+
+        .error {
+            color: red;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 
@@ -154,26 +174,17 @@ session_start();
 
     <div class="container">
 
-        <?php
-        if (isset($_POST['nickname'])) {
-            $input = trim($_POST['nickname']);
-            if (preg_match('/^[a-zA-Z]+$/', $input)) {
-                $_SESSION['nickname'] = htmlspecialchars($input);
-            } else {
-                echo "<p style='color:red;'>Enter nickname before picking quiz and nickname can only contain letters!</p>";
-            }
-        }
+        <!-- Error message -->
+        <?php if (!empty($error))
+            echo "<p class='error'>$error</p>"; ?>
 
-        $nickname = $_SESSION['nickname'] ?? '';
-        ?>
-
+        <!-- Nickname form -->
         <form method="post" class="nickname-container">
             <label>Nickname:</label>
-            <input type="text"
-                   name="nickname"
-                   placeholder="Enter nickname..."
-                   value="<?php echo $nickname; ?>"
-                   oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')">
+
+            <input type="text" name="nickname" placeholder="Enter nickname..." value="<?php echo $nickname; ?>"
+                oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')">
+
             <button type="submit">Save</button>
         </form>
 
@@ -181,27 +192,28 @@ session_start();
 
         <div class="featured-quizzes">
 
+            <!-- Animals quiz-->
             <div class="quiz-card red">
                 <h3>𐂂 Animals</h3>
 
                 <div class="card-content">
                     <img src="" alt="">
                     <p class="quiz-desc">
-                        A short quiz to test your knowledge regarding wildlife.
+                        A short quiz to test your knowledge regarding animals!
                     </p>
                 </div>
 
                 <a href="animal_quiz.php" class="play-btn">Play</a>
             </div>
 
-
+            <!-- Environment quiz -->
             <div class="quiz-card green">
                 <h3>ᨒ Environment ☘︎ ݁˖</h3>
 
                 <div class="card-content">
                     <img src="" alt="">
                     <p class="quiz-desc">
-                        Learn about nature, conservation, and how we protect our planet.
+                        A short quiz to test your knowledge regarding the environment!
                     </p>
                 </div>
 
@@ -210,8 +222,7 @@ session_start();
 
         </div>
     </div>
+
 </body>
+
 </html>
-
-
-

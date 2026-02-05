@@ -1,5 +1,94 @@
 <?php
 session_start();
+
+$_SESSION["back_clicked"] = false;
+$_SESSION["first_load"] = false;
+
+if (!isset($_SESSION["retrieve"])) {
+    $_SESSION["retrieve"] = false;
+}
+
+if (!isset($_SESSION['player_name'])) {
+    $_SESSION['player_name'] = $_POST['name'] ?? "";
+}
+
+$_SESSION['quiz_type'] = "animal_quiz";
+
+// initializers counters if they don't exist
+if (!isset($_SESSION['correct_ans'])) {
+    $_SESSION['correct_ans'] = 0;
+}
+if (!isset($_SESSION['incorrect_ans'])) {
+    $_SESSION['incorrect_ans'] = 0;
+}
+
+// check if player exists
+$playerFile = "details.txt";
+$playerFound = false;
+
+if ($_SESSION["retrieve"] == false) {
+
+    $player = fopen($playerFile, "r");
+
+    if ($player) {
+        while (($data = fgetcsv($player, 1000, ",")) !== false) {
+            if ($_SESSION["player_name"] == $data[0]) {
+                $playerFound = true;
+                break;
+            }
+        }
+        fclose($player);
+    }
+
+    $_SESSION["retrieve"] = true;
+}
+
+// load qns
+$picPattern = "/Image:\s+(\w+\S+[\.]\w+)/i";
+$descriptionPattern = "/^Description:\s+(.+)/i";
+$questionPattern = "/^Question:\s+(.+)/i";
+$answerPattern = "/^Answer:\s+(.+)/i";
+
+$animalFile = fopen("animal_qna.txt", "r");
+
+$imgName = [];
+$description = [];
+$question = [];
+$answer = [];
+
+$id = 0;
+
+while (!feof($animalFile)) {
+    $dataLine = fgets($animalFile);
+
+    if (preg_match($picPattern, $dataLine, $matches)) {
+        $imgName[$id] = $matches[1];
+    } else if (preg_match($descriptionPattern, $dataLine, $matches)) {
+        $description[$id] = $matches[1];
+    } else if (preg_match($questionPattern, $dataLine, $matches)) {
+        $question[$id] = $matches[1];
+    } else if (preg_match($answerPattern, $dataLine, $matches)) {
+        $answer[$id] = $matches[1];
+        $id++;
+    }
+}
+
+fclose($animalFile);
+
+// randomise 4 qns
+$combined = [];
+
+for ($i = 0; $i < count($question); $i++) {
+    $combined[] = [
+        "img" => $imgName[$i] ?? "",
+        "desc" => $description[$i] ?? "",
+        "q" => $question[$i] ?? "",
+        "a" => $answer[$i] ?? ""
+    ];
+}
+
+shuffle($combined);
+$combined = array_slice($combined, 0, 4);
 ?>
 
 <!DOCTYPE html>
@@ -27,34 +116,105 @@ session_start();
         }
 
         .container {
-            padding: 30px;
-        }
-
-        h2 {
-            margin-top: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
         }
 
         .quiz-box {
             background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
             max-width: 700px;
+            width: 100%;
+        }
+
+        .question {
+            display: none;
+            margin-top: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 12px;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            background: #2c3e50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1a252f;
         }
     </style>
 </head>
 
 <body>
+
     <div class="header-banner">
         ⌯✈︎ The World Around Us
     </div>
 
     <div class="container">
-        <h2>Animal Quiz</h2>
         <div class="quiz-box">
-            <p>Your quiz questions will go here.</p>
+
+            <h2>Animal Quiz</h2>
+
+            <form method="POST" action="result.php">
+                <?php foreach ($combined as $i => $q) { ?>
+                    <div class="question">
+                        <p><strong><?php echo htmlspecialchars($q['desc']); ?></strong></p>
+                        <p><?php echo htmlspecialchars($q['q']); ?></p>
+
+                        <input type="text" name="answers[]" placeholder="Type your answer...">
+
+                        <?php if ($i < count($combined) - 1) { ?>
+                            <button type="button" onclick="nextQuestion()">Next</button>
+                        <?php } else { ?>
+                            <button type="submit">Finish</button>
+                        <?php } ?>
+                    </div>
+
+                    <input type="hidden" name="correct_answers[]" value="<?php echo htmlspecialchars($q['a']); ?>">
+                <?php } ?>
+            </form>
+
         </div>
     </div>
 
+    <script>
+        let currentQuestion = 0;
+
+        function showQuestion(index) {
+            let qList = document.getElementsByClassName('question');
+            for (let i = 0; i < qList.length; i++) {
+                qList[i].style.display = 'none';
+            }
+            if (index < qList.length) {
+                qList[index].style.display = 'block';
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            showQuestion(currentQuestion);
+        }
+
+        window.onload = function () {
+            showQuestion(0);
+        };
+    </script>
+
 </body>
+
 </html>
