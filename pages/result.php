@@ -17,6 +17,8 @@ for ($i = 0; $i < count($correctAnswers); $i++) {
     }
 }
 
+
+
 if (!isset($_SESSION['correct_ans']))
     $_SESSION['correct_ans'] = 0;
 if (!isset($_SESSION['incorrect_ans']))
@@ -24,6 +26,15 @@ if (!isset($_SESSION['incorrect_ans']))
 
 $_SESSION['correct_ans'] += $correct;
 $_SESSION['incorrect_ans'] += $wrong;
+
+if (!isset($_SESSION['game_points'])) {
+    $_SESSION['game_points'] = 0;
+}
+$quizPoints = ($correct * 2) - ($wrong * 1);
+
+// Add this round's points to overall game score
+$_SESSION['game_points'] += $quizPoints;
+
 ?>
 
 <!DOCTYPE html>
@@ -91,8 +102,12 @@ $_SESSION['incorrect_ans'] += $wrong;
             <h2>Results:</h2>
             <p>Correct this round: <?php echo $correct; ?></p>
             <p>Incorrect this round: <?php echo $wrong; ?></p>
-            <p>Total Correct: <?php echo $_SESSION['correct_ans']; ?></p>
-            <p>Total Incorrect: <?php echo $_SESSION['incorrect_ans']; ?></p>
+            <!-- <p>Total Correct: <?php // echo $_SESSION['correct_ans']; ?></p>
+            <p>Total Incorrect: <?php // echo $_SESSION['incorrect_ans']; ?></p> -->
+            <!-- Need to only show point of current game -->
+            <p> Points this round: <?php echo $quizPoints; ?></p>
+            <p>Overall Points (this game): <?php echo $_SESSION['game_points']; ?></p>
+
 
             <form action="animal_quiz.php" method="get" style="display:inline;">
                 <button type="submit">Play Again</button>
@@ -100,6 +115,10 @@ $_SESSION['incorrect_ans'] += $wrong;
 
             <form action="environment_quiz.php" method="get" style="display:inline;">
                 <button type="submit">Play Environment Quiz</button>
+            </form>
+
+            <form action="leaderboard.php" method="get" style="display:inline;">
+                <button type="submit">View Leaderboard</button>
             </form>
 
             <form action="exit.php" method="get" style="display:inline;">

@@ -7,6 +7,7 @@ if (isset($_POST['nickname'])) {
 
     if (preg_match('/^[a-zA-Z]+$/', $input)) {
         $_SESSION['nickname'] = htmlspecialchars($input);
+        
     } else {
         $error = "Nickname must contain letters only!";
     }
@@ -203,7 +204,11 @@ $nickname = $_SESSION['nickname'] ?? '';
                     </p>
                 </div>
 
-                <a href="animal_quiz.php" class="play-btn">Play</a>
+                <!-- Minor changes here - Joana -->
+                <a href="animal_quiz.php" class="play-btn"
+                    onclick="<?php echo empty($_SESSION['nickname']) ? "alert('Please enter a nickname first.'); return false;" : ""; ?>">
+                    Play
+                </a>
             </div>
 
             <!-- Environment quiz -->
@@ -217,7 +222,11 @@ $nickname = $_SESSION['nickname'] ?? '';
                     </p>
                 </div>
 
-                <a href="environment_quiz.php" class="play-btn">Play</a>
+                <!-- Minor changes here - Joana -->
+                <a href="environment_quiz.php" class="play-btn"
+                    onclick="<?php echo empty($_SESSION['nickname']) ? "alert('Please enter a nickname first.'); return false;" : ""; ?>">
+                    Play
+                </a>
             </div>
 
         </div>

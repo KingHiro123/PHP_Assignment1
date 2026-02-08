@@ -1,0 +1,5 @@
+Apple, 10
+Hiro, 30
+Joana, 15
+Jojo, 12
+Momo, 9

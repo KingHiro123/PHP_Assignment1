@@ -192,7 +192,8 @@ $combined = array_slice($combined, 0, 4);
         </div>
     </div>
 
-    <script>
+    <!-- Old code (the one that you implemented) -->
+    <!-- <script>
         let currentQuestion = 0;
 
         function showQuestion(index) {
@@ -213,8 +214,50 @@ $combined = array_slice($combined, 0, 4);
         window.onload = function () {
             showQuestion(0);
         };
-    </script>
+    </script> -->
 
+
+    <!-- New Code (one that i implemented) -->
+    <script>
+        let currentQuestion = 0;
+
+        function showQuestion(index) {
+            let qList = document.getElementsByClassName('question');
+            for (let i = 0; i < qList.length; i++) {
+                qList[i].style.display = 'none';
+            }
+            if (index < qList.length) {
+                qList[index].style.display = 'block';
+            }
+        }
+
+        function nextQuestion() {
+            let qList = document.getElementsByClassName('question');
+            if (currentQuestion < qList.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            }
+        }
+
+        window.onload = function () {
+            showQuestion(0);
+        };
+
+        // something that i added for the enter key issue
+        // Prevent Enter from submitting form
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+
+                // you can keep this if you want to, i will comment it out for now 
+                // // only go next if not last question 
+                // let qList = document.getElementsByClassName('question');
+                // if (currentQuestion < qList.length - 1) {
+                //     nextQuestion();
+                // }
+            }
+        });
+    </script>
 </body>
 
 </html>
