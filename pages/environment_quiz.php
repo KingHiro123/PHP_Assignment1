@@ -23,7 +23,7 @@ if (!isset($_SESSION['incorrect_ans'])) {
 }
 
 // check if player exists
-$playerFile = "details.txt";
+$playerFile = "../files/leaderboard.txt";
 $playerFound = false;
 
 if ($_SESSION["retrieve"] == false) {
