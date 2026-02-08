@@ -1,3 +1,4 @@
+abc, -8
 Apple, 10
 Hiro, 30
 Joana, 15
