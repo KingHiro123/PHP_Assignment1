@@ -198,7 +198,7 @@ $nickname = $_SESSION['nickname'] ?? '';
                 <h3>𐂂 Animals</h3>
 
                 <div class="card-content">
-                    <img src="" alt="">
+                    <img src="../images/animals.jpg" alt="">
                     <p class="quiz-desc">
                         A short quiz to test your knowledge regarding animals!
                     </p>
@@ -216,7 +216,7 @@ $nickname = $_SESSION['nickname'] ?? '';
                 <h3>ᨒ Environment ☘︎ ݁˖</h3>
 
                 <div class="card-content">
-                    <img src="" alt="">
+                    <img src="../images/environment.jpg" alt="">
                     <p class="quiz-desc">
                         A short quiz to test your knowledge regarding the environment!
                     </p>

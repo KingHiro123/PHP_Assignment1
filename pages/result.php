@@ -17,8 +17,6 @@ for ($i = 0; $i < count($correctAnswers); $i++) {
     }
 }
 
-
-
 if (!isset($_SESSION['correct_ans']))
     $_SESSION['correct_ans'] = 0;
 if (!isset($_SESSION['incorrect_ans']))
@@ -110,7 +108,7 @@ $_SESSION['game_points'] += $quizPoints;
 
 
             <form action="animal_quiz.php" method="get" style="display:inline;">
-                <button type="submit">Play Again</button>
+                <button type="submit">Play Animal Quiz</button>
             </form>
 
             <form action="environment_quiz.php" method="get" style="display:inline;">

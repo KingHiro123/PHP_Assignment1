@@ -1,39 +1,39 @@
-Image: 
+Image: elephant.jpg
 Description: This large mammal has a long trunk and big ears, and is known for its intelligence and memory.
 Question: What is the name of this animal?
 Answer: Elephant
 
-Image: 
+Image: panda.jpeg
 Description: This black-and-white bear-like animal is native to China and primarily eats bamboo.
 Question: What is the name of this animal?
 Answer: Panda
 
-Image: 
+Image: parrot.jpg
 Description: Known for its colorful feathers and ability to mimic human speech, this bird is often kept as a pet.
 Question: What is the name of this animal?
 Answer: Parrot
 
-Image: 
+Image: cheetah.jpg
 Description: This animal is the fastest land mammal, capable of reaching speeds over 100 km/h.
 Question: What is the name of this animal?
 Answer: Cheetah
 
-Image: 
+Image: octopus.jpg
 Description: This marine animal has eight arms and is famous for its intelligence and ability to camouflage.
 Question: What is the name of this animal?
 Answer: Octopus
 
-Image: 
+Image: penguin.jpg
 Description: This flightless bird is native to Antarctica and is excellent at swimming.
 Question: What is the name of this animal?
 Answer: Penguin
 
-Image: 
+Image: kangaroo.jpg
 Description: Known for its pouch, this Australian marsupial carries its young in it.
 Question: What is the name of this animal?
 Answer: Kangaroo
 
-Image: 
+Image: lion.jpg
 Description: This large feline is called the “king of the jungle” and lives mainly in African savannas.
 Question: What is the name of this animal?
 Answer: Lion

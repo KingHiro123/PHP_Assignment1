@@ -1,6 +1,9 @@
 abc, -8
 Apple, 10
+hehe, -16
 Hiro, 30
 Joana, 15
 Jojo, 12
 Momo, 9
+qwq, -10
+xyz, -4

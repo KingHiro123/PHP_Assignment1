@@ -44,7 +44,7 @@ if ($_SESSION["retrieve"] == false) {
 }
 
 // load qns
-$picPattern = "/Image:\s+(\w+\S+[\.]\w+)/i";
+$picPattern = "/^Image:\s*(.+)/i";
 $descriptionPattern = "/^Description:\s+(.+)/i";
 $questionPattern = "/^Question:\s+(.+)/i";
 $answerPattern = "/^Answer:\s+(.+)/i";
@@ -173,8 +173,15 @@ $combined = array_slice($combined, 0, 4);
             <form method="POST" action="result.php">
                 <?php foreach ($combined as $i => $q) { ?>
                     <div class="question">
-                        <p><strong><?php echo htmlspecialchars($q['desc']); ?></strong></p>
-                        <p><?php echo htmlspecialchars($q['q']); ?></p>
+
+    <?php if (!empty($q['img'])) { ?>
+        <img src="../images/<?php echo htmlspecialchars($q['img']); ?>" 
+             style="width:100%; max-height:250px; object-fit:contain; margin-bottom:15px;">
+    <?php } ?>
+
+    <p><strong><?php echo htmlspecialchars($q['desc']); ?></strong></p>
+    <p><?php echo htmlspecialchars($q['q']); ?></p>
+
 
                         <input type="text" name="answers[]" placeholder="Type your answer...">
 
