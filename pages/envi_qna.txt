@@ -23,8 +23,8 @@ Description: Trees release oxygen during photosynthesis and take in carbon dioxi
 Question: True or False?
 Answer: True
 
-Image: The Amazon Rainforest is often called the “lungs of the Earth” because it produces more oxygen than it consumes.
-Description: 
+Image: 
+Description: The Amazon Rainforest is often called the “lungs of the Earth” because it produces more oxygen than it consumes.
 Question: True or False?
 Answer: True 
 
